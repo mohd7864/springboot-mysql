@@ -1,0 +1,21 @@
+version: '3'
+services: 
+  mysql:
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=test
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+  springboot-mysql:
+    image: springbootmysql:latest
+    depends_on:
+      - mysql
+    ports:
+      - 8080:9080
+    environment:
+      - DATABASE_HOST=mysql
+      - DATABASE_USER=root
+      - DATABASE_PASSWORD=root
+      - DATABASE_NAME=test
+      - DATABASE_PORT=3306
